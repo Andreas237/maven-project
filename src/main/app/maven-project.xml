@@ -28,10 +28,10 @@ http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/
         </db:select>
         <object-to-string-transformer doc:name="Object to String"/>
         <jms:outbound-endpoint queue="flights" connector-ref="Active_MQ" doc:name="sendToJMS"/>
-        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        <logger message="publisher payload: #[payload]" level="INFO" doc:name="Logger"/>
     </flow>
     <flow name="logFlights">
         <jms:inbound-endpoint queue="flights" connector-ref="Active_MQ" doc:name="receiveFromJMS"/>
-        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        <logger message="subscriber payload: #[payload]" level="INFO" doc:name="Logger"/>
     </flow>
 </mule>
